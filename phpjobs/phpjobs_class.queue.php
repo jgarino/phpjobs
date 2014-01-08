@@ -52,7 +52,7 @@ class Queue {
 		$this->tasks_object_array = NULL;
 		echo "NUMBER OF TASKS IN QUEUE : ".$this->number_of_tasks_in_queue."<br />";
 		for($i=0;$i<$this->number_of_tasks_in_queue;$i++){
-			if($i>$this->maximum_number_of_tasks_to_process)
+			if($i>=$this->maximum_number_of_tasks_to_process)
 				break;
 			if(isset($this->tasks_files_array[$i])){
 				$filename =  $this->tasks_files_array[$i];
@@ -65,7 +65,7 @@ class Queue {
 	public function QueueExecuteTaskList(){
 		$this->QueueGetList();
 		for($i=0;$i<$this->number_of_tasks_in_queue;$i++){
-			if($i>$this->maximum_number_of_tasks_to_process)
+			if($i>=$this->maximum_number_of_tasks_to_process)
 				break;
 			if(isset($this->tasks_object_array[$i])){
 				$this->tasks_object_array[] = $temp_task;

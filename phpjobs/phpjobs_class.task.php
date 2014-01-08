@@ -165,8 +165,15 @@ class Task{
 			$return = date("Y-m-d H:i:s",$time);
 		return $return;
 	}
+	private function ShowArgs($args_array=NULL){
+		$args = NULL;
+		if(!empty($args_array)){
+			$args = implode(", ",$args_array);
+		}
+		return $args;
+	}
 	public function Show() {
-		return $this->GetId()."\t".$this->GetTitle()."\t".$this->ShowPriority()."\t".$this->GetStatus()."\t".(empty($this->job_before)?NULL:$this->job_before->GetFunctionToExecute())."\t".(empty($this->job_before)?NULL:"[".implode(", ",$this->job_before->GetParams())."]")."\t".$this->job_main->GetFunctionToExecute()."\t[".implode(", ",$this->job_main->GetParams())."]\t".(empty($this->job_after)?NULL:$this->job_after->GetFunctionToExecute())."\t".(empty($this->job_after)?NULL:"[".implode(", ",$this->job_after->GetParams())."]")."\t".$this->GetScheduledDatetime()."\t".$this->GetDatetime($this->creation_time)."\t".$this->GetDatetime($this->execution_time)."\t".$this->execution_duration."\t".$this->GetDatetime($this->finish_time)."\t".$this->total_duration;
+		return $this->GetId()."\t".$this->GetTitle()."\t".$this->ShowPriority()."\t".$this->GetStatus()."\t".(empty($this->job_before)?NULL:$this->job_before->GetFunctionToExecute())."\t".(empty($this->job_before)?NULL:"[".$this->ShowArgs($this->job_before->GetParams())."]")."\t".$this->job_main->GetFunctionToExecute()."\t[".$this->ShowArgs($this->job_main->GetParams())."]\t".(empty($this->job_after)?NULL:$this->job_after->GetFunctionToExecute())."\t".(empty($this->job_after)?NULL:"[".$this->ShowArgs($this->job_after->GetParams())."]")."\t".$this->GetScheduledDatetime()."\t".$this->GetDatetime($this->creation_time)."\t".$this->GetDatetime($this->execution_time)."\t".$this->execution_duration."\t".$this->GetDatetime($this->finish_time)."\t".$this->total_duration;
 	}
 	public function GetRepresentation(){
 		return $this->Show();

@@ -78,7 +78,7 @@ function PhpJobs_TaskCounterAdd(){
 			$cpt = 0;
 			if(!is_dir(PhpJobs_GetCurrentDirectory().PHPJOBS_TASKS_QUEUE_FOLDER))
 				mkdir(PhpJobs_GetCurrentDirectory().PHPJOBS_TASKS_QUEUE_FOLDER);
-			PhpJobs_LogWrite('task', PHPJOBS_LOG4PHP_LEVEL_DEBUG, 'File does not exist : '.GetCurrentDirectory().PHPJOBS_TASKS_QUEUE_FOLDER.PHPJOBS_TASK_COUNTER_FILE.' / counter = '.$cpt, PHPJOBS_LOG4PHP_DISPLAY);
+			PhpJobs_LogWrite('task', PHPJOBS_LOG4PHP_LEVEL_DEBUG, 'File does not exist : '.PhpJobs_GetCurrentDirectory().PHPJOBS_TASKS_QUEUE_FOLDER.PHPJOBS_TASK_COUNTER_FILE.' / counter = '.$cpt, PHPJOBS_LOG4PHP_DISPLAY);
 		}//else
 		PhpJobs_LogWrite('task', PHPJOBS_LOG4PHP_LEVEL_DEBUG, 'Adding : file_put_contents('.PhpJobs_GetCurrentDirectory().PHPJOBS_TASKS_QUEUE_FOLDER.PHPJOBS_TASK_COUNTER_FILE.' , '.($cpt).');' , PHPJOBS_LOG4PHP_DISPLAY);
 		file_put_contents(PhpJobs_GetCurrentDirectory().PHPJOBS_TASKS_QUEUE_FOLDER.PHPJOBS_TASK_COUNTER_FILE, $cpt);
@@ -185,7 +185,7 @@ function PhpJobs_TaskRead($id, $serialized_object){
 		fclose($handle);
 	}//try
 	catch (Exception $ex) {
-		LogWrite('task', PHPJOBS_LOG4PHP_LEVEL_ERROR, 'The file '.$filepath.' has not been written : '.$ex->getMessage(), PHPJOBS_LOG4PHP_DISPLAY);
+		PhpJobs_LogWrite('task', PHPJOBS_LOG4PHP_LEVEL_ERROR, 'The file '.$filepath.' has not been written : '.$ex->getMessage(), PHPJOBS_LOG4PHP_DISPLAY);
 	}//catch
 	return $filepath;
 }

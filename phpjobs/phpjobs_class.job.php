@@ -4,7 +4,7 @@ class Job {// implements Serializable{
 	private $params = NULL;
 	private $execution_duration = NULL;
 
-	public function __construct($function_name, $params=NULL, $execution_duration=0){
+	public function __construct($function_name, $params=array(), $execution_duration=0){
 		$this->function_to_execute = $function_name;
 		$this->params = $params;
 		$this->execution_duration = $execution_duration;
