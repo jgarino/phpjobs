@@ -110,3 +110,17 @@ if(!defined('PhpJobs_FileDelete')){
 		return $is_file_deleted;
 	}
 }
+if(!defined('PhpJobs_Include')){
+	function PhpJobs_Include($file){
+		if(file_exists($file)){
+			include_once $file;
+		}//if
+	}
+}
+if(!defined('PhpJobs_Require')){
+	function PhpJobs_Require($file){
+		if(file_exists($file)){
+			require_once $file;
+		}//if
+	}
+}
