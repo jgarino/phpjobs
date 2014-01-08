@@ -14,6 +14,7 @@ define("PHPJOBS_TASK_PRIORITY","{task_priority}");
 define("PHPJOBS_TASK_MASK",PHPJOBS_TASK_PREFIX.PHPJOBS_TASK_PRIORITY."_".PHPJOBS_TASK_ID.PHPJOBS_TASK_SUFFIX);
 define("PHPJOBS_TASK_REPRESENTATION","{task_id}\t{task_title}\t{task_priority}\t{task_status}\t{job_before}\t{params_before}\t{job_main}\t{params_main}\t{job_ater}\t{params_after}\t{task_creation_time}\t{task_execution_time}\t{task_execution_duration}\t{task_finish_time}\t{task_total_duration}");
 define("PHPJOBS_TASK_TD_HEADER","<td>ID</td><td>Title</td><td>Priority</td><td>Status</td><td>Job Before</td><td>Job before arguments</td><td>Job main</td><td>Job main arguments</td><td>Job after</td><td>Job after arguments</td><td>Scheduled</td><td>Created</td><td>Executed</td><td>Execution duration</td><td>Finished</td><td>Total duration</td>");
+define("PHPJOBS_TASK_NUMBER_OF_CELLS",16);
 
 define("PHPJOBS_TASK_STATUS_PROCESSING","processing");
 define("PHPJOBS_TASK_STATUS_EXECUTING","executing");

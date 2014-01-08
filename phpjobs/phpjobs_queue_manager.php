@@ -13,18 +13,23 @@ function PhpJobs_ShowExecuteQueue($limit_jobs_to_process=Queue::MAX_TASKS){
 	$task_list = $queue_object->QueueGetList();
 	echo "<table border='1'>\r\n";
 	echo "<tr>".PHPJOBS_TASK_TD_HEADER."</tr>\r\n";
-	foreach($task_list as $index => $task){
-		if(is_a($task, 'Task')){
-			echo "<tr>";
-			$task->Execute();
-			PhpJobs_TaskStore($task);
-			$fields = explode("\t", $task->Show());
-			foreach($fields as $field){
-				echo "<td>".$field."</td>\r\n";
-			}//foreach
-			echo "</tr>";
-		}//if
-	}//foreach
+	if(count($task_list)>0){
+		foreach($task_list as $index => $task){
+			if(is_a($task, 'Task')){
+				echo "<tr>";
+				$task->Execute();
+				PhpJobs_TaskStore($task);
+				$fields = explode("\t", $task->Show());
+				foreach($fields as $field){
+					echo "<td>".$field."</td>\r\n";
+				}//foreach
+				echo "</tr>";
+			}//if
+		}//foreach
+	}//if count
+	else{
+		echo "<tr><td colspan='".PHPJOBS_TASK_NUMBER_OF_CELLS."' style='text-align: center;'>There is no task in queue.</td></tr>\r\n";
+	}//else
 }
 
 function PhpJobs_ShowFinishedTasks($limit=Queue::MAX_TASKS){
@@ -46,7 +51,7 @@ function PhpJobs_ShowFinishedTasks($limit=Queue::MAX_TASKS){
 		}//foreach
 	}
 	else
-		echo "<tr><td colspan='15' style='text-align: center;'>No Task in current queue.</td></tr>";
+		echo "<tr><td colspan='".PHPJOBS_TASK_NUMBER_OF_CELLS."' style='text-align: center;'>No Task in current queue.</td></tr>";
 	echo "</table>";
 }
 
